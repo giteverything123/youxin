@@ -1,8 +1,9 @@
 const defaultState = {
   username: '',
-  password: '',
-  haserror: false,
-  hasNameAndPwd: false
+  password1: '',
+  password2: '',
+  tip: '',
+  error: false
 }
 function clone(obj) {
   return JSON.parse(JSON.stringify(obj));
@@ -13,20 +14,15 @@ export default (state = defaultState, action) => {
     case 'change_username':
       newState.username = action.value;
       return newState;
-    case 'change_password':
-      newState.password = action.value;
+    case 'change_password1':
+      newState.password1 = action.value;
       return newState;
-    case 'login_fail':
-      newState.haserror = true;
+    case 'change_password2':
+      newState.password2 = action.value;
       return newState;
-    case 'error_miss':
-      newState.haserror = false;
-      return newState;
-    case 'null_tip':
-      newState.hasNameAndPwd = true;
-      return newState;
-    case 'tip_miss':
-      newState.hasNameAndPwd = false;
+    case 'register_tip':
+      newState.error = action.value;
+      newState.tip = action.tip;
       return newState;
     default:
       return state;

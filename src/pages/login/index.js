@@ -1,21 +1,34 @@
 import React from 'react';
 import { LoginWrapper } from './style';
 import { connect } from 'react-redux';
+import { toLogin } from './store/actionCreater';
 
 const Login = (props) => {
+  let {username, password, history, haserror, hasNameAndPwd} = props;
+  let {handleLogin, handleUsernameChange, handlePwdChange} = props;
   return (
     <LoginWrapper>
       <div className='login-box'>
         <div className='ipt-wrapper'>
-          <input type='text' placeholder='用户名' value={props.username} onChange={props.handleUsernameChange}/>
+          <input type='text' placeholder='用户名' value={username} onChange={handleUsernameChange}/>
         </div>
         <div className='ipt-wrapper'>
-          <input type='password' placeholder='密码' value={props.password} onChange={props.handlePwdChange}/>
+          <input type='password' placeholder='密码' value={password} onChange={handlePwdChange}/>
         </div>
         <div className='submit-box'>
-          <div onClick={props.handleLogin}>登录</div>
-          <div>注册</div>
+          <div onClick={() =>handleLogin({username,password, history})}>登录</div>
         </div>
+        <div className='redirect-box'>
+          <div>去注册</div>
+          <div>忘记密码</div>
+        </div>
+        
+      </div>
+      <div className={haserror ? 'err-box has-error': 'err-box'}>
+        <div>账号或密码错误</div>
+      </div>
+      <div className={!hasNameAndPwd ? 'err-box': 'err-box has-error'}>
+        <div>账号和密码不能为空</div>
       </div>
     </LoginWrapper>
   );
@@ -23,7 +36,9 @@ const Login = (props) => {
 
 const mapState = (state) => ({
   username: state.loginReducer.username,
-  password: state.loginReducer.password
+  password: state.loginReducer.password,
+  haserror: state.loginReducer.haserror,
+  hasNameAndPwd: state.loginReducer.hasNameAndPwd
 });
 
 const mapDispatch = dispatch => ({
@@ -37,12 +52,10 @@ const mapDispatch = dispatch => ({
     dispatch({
       type: 'change_password',
       value: e.target.value
-    })
-  },
-  handleLogin() {
-    dispatch({
-      action: 'login'
     });
+  },
+  handleLogin(obj) {
+    dispatch(toLogin(obj));
   }
 });
 

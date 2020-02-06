@@ -3,8 +3,11 @@ const koaBody = require('koa-body');
 const koaCors = require('koa-cors');
 const koaRouter = require('koa-Router');
 const koaSession = require('koa-session');
+const hassession = require('./modules/hassession');
 const loginRoutes = require('./routes/login');
+const registerRoutes = require('./routes/register');
 let app = new Koa();
+app.use(koaBody());
 let router = new koaRouter();
 app.keys = ['some secret hurr'];
  
@@ -20,15 +23,20 @@ const CONFIG = { //koa-session配置项
   signed: true, /** (boolean) signed or not (default true) */
   rolling: true, /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
   renew: false, /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
-  sameSite: null, /** (string) session cookie sameSite options (default null, don't set it) */
+  sameSite: null/** (string) session cookie sameSite options (default null, don't set it) */
 };
  
 app.use(koaSession(CONFIG, app));
+app.use(koaCors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}));//支持跨域访问
+app.use(hassession);
+router
+  .use('/login', loginRoutes)
+  .use('/register',registerRoutes);
 
-app.use(koaCors());//支持跨域访问
-router.use('/login', loginRoutes);
-app
-  .use(router.routes())
+app.use(router.routes());
 
 app.listen(6677, () => {
   console.log('服务已运行，端口为6677');

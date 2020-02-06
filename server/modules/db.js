@@ -8,6 +8,7 @@ class Db {
     }
     return Db.instance;
   }
+
   constructor() {
     this.dbClient = null;
     this.connect(); //初始化的时候连接数据库
@@ -16,7 +17,7 @@ class Db {
   connect() {
     return new Promise((resolve, reject) => {
       if (!this.dbClient) {
-        MongoClient.connect(Config.dbUrl, (err, client) => {
+        MongoClient.connect(Config.dbUrl, {useUnifiedTopology: true}, (err, client) => {
           console.log('连接数据库中...');
           if (err) {
             reject(err);
