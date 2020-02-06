@@ -5,4 +5,5 @@ let tools = {
     return md5(str);
   }
 }
+
 module.exports = tools;

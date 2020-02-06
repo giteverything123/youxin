@@ -2,6 +2,7 @@ import React from 'react';
 import { LoginWrapper } from './style';
 import { connect } from 'react-redux';
 import { toLogin } from './store/actionCreater';
+import {Link} from 'react-router-dom';
 
 const Login = (props) => {
   let {username, password, history, haserror, hasNameAndPwd} = props;
@@ -19,7 +20,7 @@ const Login = (props) => {
           <div onClick={() =>handleLogin({username,password, history})}>登录</div>
         </div>
         <div className='redirect-box'>
-          <div>去注册</div>
+          <div><Link to='/register'>去注册</Link></div>
           <div>忘记密码</div>
         </div>
         

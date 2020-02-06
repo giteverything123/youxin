@@ -1,6 +1,6 @@
 const Koa = require('koa');
 const koaBody = require('koa-body');
-const koaCors = require('koa-cors');
+const koaCors = require('koa2-cors');
 const koaRouter = require('koa-Router');
 const koaSession = require('koa-session');
 const hassession = require('./modules/hassession');
@@ -28,8 +28,9 @@ const CONFIG = { //koa-session配置项
  
 app.use(koaSession(CONFIG, app));
 app.use(koaCors({
-  origin: 'http://localhost:3000',
-  credentials: true
+  origin: 'http://192.168.1.108:3000',
+  credentials: true,
+  allowMethods: ['GET', 'POST']
 }));//支持跨域访问
 app.use(hassession);
 router
