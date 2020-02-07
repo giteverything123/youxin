@@ -4,6 +4,7 @@ export const HomeWrapper = styled.div`
   height: 100%;
   background:#fcfcfc;
   position: relative;
+  margin-top:38px;
   .list-box{
     .list{
       margin-top: 0.2rem;

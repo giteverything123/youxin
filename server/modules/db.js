@@ -18,7 +18,7 @@ class Db {
     return new Promise((resolve, reject) => {
       if (!this.dbClient) {
         MongoClient.connect(Config.dbUrl, {useUnifiedTopology: true}, (err, client) => {
-          console.log('连接数据库中...');
+          console.log('数据库已连接...');
           if (err) {
             reject(err);
           } else {
