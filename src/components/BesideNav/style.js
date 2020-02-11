@@ -5,7 +5,8 @@ const BesideNavWrapper = styled.div`
   top:39px;
   width: 100px;
   height: 100%;
-  border-left:1px solid lightblue;
+  background-color:#ca0c16;
+  border-left:1px solid #fff;
   transition: all 0.2s ease;
   &.show-beside{
     right: 0;
@@ -18,8 +19,10 @@ const BesideNavWrapper = styled.div`
     line-height:30px;
     text-align:center;
     font-size:14px;
-    border-bottom: 1px solid lightblue;
-    background-color:#FFF;
+    border-bottom: 1px solid #fff;
+    a{
+      color:#fff
+    }
   }
 `;
 

@@ -47,4 +47,7 @@ border-spacing: 0;
 body,html{
   height:100%;
 }
+a{
+  text-decoration: none;
+}
 `;

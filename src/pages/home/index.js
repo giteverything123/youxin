@@ -8,7 +8,7 @@ const Home = (props) => {
   let { besidelist, showBeside } = props;
   return (
     <HomeWrapper>
-      <Header></Header>
+      <Header backUrl='/login' title='首页'></Header>
       <div className='list-box'>
         <div className='list'>计算机</div>
         <div className='list'>文学</div>

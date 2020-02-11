@@ -1,11 +1,15 @@
 import React from 'react';
 import {HeadWrapper} from './style';
 import { connect } from 'react-redux';
-const Footer = (props) => {
+import {Link} from 'react-router-dom';
+const Header = (props) => {
+  let {backUrl,title} = props;
   return (
   <HeadWrapper>
-    <div><i className='iconfont'>&#xe627;</i>返回</div>
-    <div>标题</div>
+    <Link to={backUrl}>
+      <div><i className='iconfont'>&#xe627;</i></div>
+    </Link>
+    <div>{title}</div>
     <div onClick={props.handleCategoryClick}><i className='iconfont'>&#xe625;</i></div>
   </HeadWrapper>)
 };
@@ -15,4 +19,4 @@ const mapDispatch = dispatch => ({
     dispatch({type: 'global_beside_show'});
   }
 })
-export default connect(null, mapDispatch)(Footer);
+export default connect(null, mapDispatch)(Header);

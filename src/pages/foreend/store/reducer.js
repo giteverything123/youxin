@@ -1,7 +1,6 @@
 const defaultState = {
-  info: '',
-  besidelist: [
-    {url: '/foreend', listname: '前端'}
+  besidelist:[
+    {url: '/foreend/webpack', listname: 'webpack'}
   ]
 }
 
